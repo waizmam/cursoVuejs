@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 08 à 09 - Vuejs do jeito ninja!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+        <h1>{{ titulo }}</h1>
+        
+        <form action="https://google.com">
+                <button type="submit" class="btn btn-primary" v-on:click.prevent.stop="enviar()">Enviar</button>
+                <button type="submit" class="btn btn-warning" @:click.prevent.stop="enviar()">Enviar</button>
+        </form>
+
+        <hr>
+        <button class="btn btn-primary" v-on:click="enviar()">Enviar</button>
+
+        <hr>
+        <hr>
+        <ul>
+            <li v-for="usuario in usuarios">{{ usuario.nome | toUpperCase() | truncate('5') }}</li>
+        </ul>
+
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                titulo: "Aula 01 - Vuejs do jeito ninja",   
+                usuarios:[
+                    { nome: 'Jon Snow' },
+                    { nome: 'Tyrion Lannister'},
+                    { nome: 'Daenerys Targaryen'}
+                ]          
+            },
+            filters:{
+                toUpperCase(str){
+                    return str.toUpperCase();
+                },
+                truncate(str,lenght){
+                    var output = str;
+                    if(output.lenght > lenght){
+                        output = str.substring(0,lenght) + ' ...';
+                    }
+                    return output;
+                }
+            },
+            methods: {
+                enviar(){
+                    alert('Enviado!')
+                },
+            },
+        });
+    </script>
+
+</body>
+</html>

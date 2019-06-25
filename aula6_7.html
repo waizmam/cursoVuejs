@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 06 à 07 - Vuejs do jeito ninja!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .red{
+            color: red;
+        }
+        .green{
+            color:green;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ titulo }}</h1>     
+        
+        <img v-bind:src="imagem" v-bind:alt="alt" title="" id="" :data-img-large="imagem"/>
+
+        <p :class="cores">Diretiva v-bind pode ser usada também apenas com (:)</p>
+
+        <hr>
+
+        <button class="btn" :class="btnClassLimpar" v-bind:style="btnStyleLimpar">Limpar</button>
+        <button class="btn" :class="btnClassEnviar" v-bind:style="btnStyleEnviar">Enviar</button>
+
+        
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{                
+                titulo: "Aula 01 - Vuejs do jeito ninja",                
+                imagem:"https://newline.tech/wp-content/uploads/2018/08/Illustration_for_nlt_blog_VueJS_cover_1.jpg",
+                alt: " Vuejs is awesome!",
+                cores:"red",
+                btnClassLimpar: {
+                    'btn-danger': true,
+                    'btn-sm': true
+                },
+                btnClassEnviar: [
+                    'btn-primary', {'btn-lg': false }
+                ],
+                btnStyleLimpar: [
+                    {'font-size': '50px'},
+                    {'text-transform': 'lowercase'}
+                ],
+                btnStyleEnviar: {
+                    'font-size' : '10px'
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

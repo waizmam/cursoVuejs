@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 16 - Vuejs do jeito ninja!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+       <div class="container">
+           <br><br><br><br>
+            <card>
+                <h4 slot="title" class="card-title">Card Title</h4>
+                <template slot="text">
+                    <p >Some quick example text build on the carrd title and make up the bulk of the card's content.</p>
+                    <p >Some quick example text build on the carrd title and make up the bulk of the card's content.</p>    
+                </template>
+                <a slot="action" href="#" class="btn btn-primary">Go somewhere</a>
+            </card>
+            <br><br>
+            <card>
+                <h4 slot="title" class="card-title">Card Title</h4>
+                <template slot="text">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime magnam harum voluptas architecto, sed voluptates sunt cum temporibus, adipisci quasi unde perspiciatis esse. Quam voluptatibus recusandae optio cupiditate error nihil!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime magnam harum voluptas architecto, sed voluptates sunt cum temporibus, adipisci quasi unde perspiciatis esse. Quam voluptatibus recusandae optio cupiditate error nihil!</p>
+                </template>                
+                <a slot="action" href="#" class="btn btn-primary">Leia Mais</a>
+            </card>
+        </div>
+    </div>   
+
+    <template id="card">
+        <div class="card">
+            <img class="card-img-top" src="http://via.placeholder.com/350x50" >
+            <div class="card-block">
+                <slot name="title"></slot>                
+                <slot name="text"></slot>                
+                <slot name="action"></slot>                
+            </div>
+        </div>
+    </template>
+
+   
+    <script src="https://unpkg.com/vue"></script>
+    <script>   
+        
+        Vue.component('card',{ 
+            template:"#card",
+            data(){
+                return{
+                    title: '',
+                }
+            }
+        });
+
+        var app = new Vue({
+            el:"#app",
+            data:{
+                titulo: "Vuejs do jeito ninja",               
+            }            
+        });
+    </script>
+
+</body>
+</html>

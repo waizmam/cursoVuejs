@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 10 - Vuejs do jeito ninja!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+        <h1>{{ titulo }}</h1>
+        <hr>
+        {{ nome }}  
+        {{ toUpperCase }}        
+        <hr>
+        {{ fullName }}
+
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                titulo: "Aula 01 - Vuejs do jeito ninja",   
+                nome: "Jon Snow",
+                firstName: "",
+                lastName: "",
+                //fullName:""
+            },
+            computed: {
+                toUpperCase(){
+                    return this.nome.toUpperCase()
+                },
+                fullName(){
+                    return this.firstName + ' '+ this.lastName;
+                }
+            },
+            watch: {
+                /*nome(newValue, oldValue){
+                    console.log('newValue ',newValue);
+                    console.log('oldValue ',oldValue);
+                },
+                firstName(newValue){
+                    this.fullName = newValue +' ' + this.lastName;
+                },
+                lastName(newValue){
+                    this.fullName = this.firstName +' ' + newValue;
+                }*/
+
+                firstName(newValue){
+                    this.updateUser();
+                }
+            },
+
+            methods: {
+                updateUser(){
+                    console.log('Usuário atualizado!');
+                }
+            },
+        });
+    </script>
+
+</body>
+</html>
