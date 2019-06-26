@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Aula 18 - Vuejs do jeito ninja!</title>
+    <title>Aula 19 - Vuejs do jeito ninja!</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
@@ -26,13 +26,27 @@
    
     <script src="https://unpkg.com/vue"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>   
         var mixin = {            
             methods:{
                 getUsers(){
                     this.loader.users = true;
                     var url = 'http://jsonplaceholder.typicode.com/users';
-                    this.$http.get(url)
+                    var vm = this;
+                    axios.get(url).then(function(resp){
+                        vm.users = resp.data;
+                        console.log(resp);
+                    })
+                    .catch(function (error) {
+                        vm.response.status = "error";
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        vm.loader.users = false;
+                    });
+
+                    /*this.$http.get(url)
                         .then(function(resp){
                             this.users = resp.body;
                         }, function(error){
@@ -40,7 +54,7 @@
                             console.log(error);
                     }).finally(function(){
                         this.loader.users = false;
-                    });
+                    });*/
                 }
             }
         }  

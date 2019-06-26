@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 19 - Vuejs do jeito ninja!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div id="app">
+        <br><br><br>
+        <div class="container">
+            <h1 ref="title">{{ titulo }}</h1>   
+            <hr>            
+            <component :is="movie"></component>
+
+            <!--<hr>
+                <transformers v-if="movie == 'transformers'">
+                    <h4 slot="title">Transformers</h4>
+                </transformers>
+            <hr>
+                <game-of-thrones v-if="movie == 'game-of-thrones'"></game-of-thrones>
+            <hr> -->
+            <ul ref="users">
+                <li v-for="(user, index) in users" :key="index" >{{ user.name }} <a @click.stop.prevent="remove(index)" style="cursor:pointer;color:blue">x</a></li>
+            </ul>
+        </div>
+    </div>  
+    
+    <template id="transformers">
+        <div>
+            <!--<slot name="title"></slot>-->
+            <h4>Transformers</h4>
+            <ul>
+                <li v-for="item in transformers">{{ item.name }}</li>
+            </ul>
+        </div>
+    </template>
+
+    <template id="gameOfThrones">
+        <div>
+            <h4>Game Of Thrones</h4>
+            <ul>
+                <li v-for="item in gameOfThrones">{{ item.name }}</li>
+            </ul>
+        </div>
+    </template>
+
+   
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>   
+       
+        Vue.component('transformers', {
+            template:"#transformers",
+            data() {
+                return {
+                    transformers:[
+                        {name: 'Optmus Prime'},
+                        {name: 'Bumble Bee'},
+                        {name: 'Megatron'}
+                    ]
+                }
+            },
+        });
+
+        Vue.component('game-of-thrones', {
+            template:"#gameOfThrones",
+            data() {
+                return {
+                    gameOfThrones:[
+                        {name: 'Jon Snow'},
+                        {name: 'Daenerys Targaryen'},
+                        {name: 'Tyron'}
+                    ]
+                }
+            },
+        });
+
+        var app = new Vue({
+            el:"#app",
+            mounted() {
+                console.log(this.$refs.users);
+                console.log(this.$refs.title);
+            },
+            data:{
+                titulo: "Vuejs do jeito ninja",               
+                users:[
+                    {name: 'Emma'},
+                    {name: 'Sophia'},
+                    {name: 'Isabella'}
+                ],
+                movie:'transformers',
+            },
+            methods: {
+                remove(index){
+                    this.users.splice(index,1);
+                }
+            },        
+        });
+    </script>
+
+</body>
+</html>
